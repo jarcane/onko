@@ -17,7 +17,7 @@
   [val pred?]
   (if-not (pred? val)
     (throw 
-     (ex-info (str "Type error: " val " does not satisfy " (pretty-demunge (str pred?)))
-              {:expected pred?
+     (ex-info (str "Type error: " val " does not satisfy " (pretty-demunge pred?))
+              {:expected (pretty-demunge pred?)
                :recieved val}))))
 
