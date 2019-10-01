@@ -1,5 +1,5 @@
 (defproject onko "0.0.0"
-  :description "FIXME: write description"
+  :description "Predicate typing for Clojure"
   :url "https://github.com/jarcane/onko"
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
