@@ -23,9 +23,8 @@
               {:expected (pretty-demunge pred?)
                :recieved val}))))
 
-(defn map?
-  "map? generates a function that checks that a given value matches the types of the
-  given model map m"
+(defn map-of?
+  "map-of? generates a function that checks that a given value matches the types of the given model map m"
   [m]
   (fn [val]
     (let [keydiff (difference (set (keys m)) (set (keys val)))]
@@ -34,3 +33,8 @@
                 (map (fn [[k v]] (check? (k m) v)))
                 (reduce #(and %1 %2)))))))
       
+(defn seq-of? 
+  "seq-of? generates a function that checks that a given seq's values all match the type predicate given"
+  [pred?]
+  (fn [val]
+    (every? pred? val)))
