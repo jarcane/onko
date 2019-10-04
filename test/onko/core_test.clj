@@ -3,6 +3,14 @@
             [onko.core :refer :all]))
 
 
-(deftest a-test
-  (testing "FIXME, I don't fail."
-    (is (true? (= 4 (count (str (= 1 1))))))))
+(deftest check?-test
+  (testing "check? verifies values safely"
+    (is (true? (check? string? "dave")))
+    (is (true? (check? int? 34)))
+    (is (false? (check? string? 34)))
+    (is (false? (check? int? "dave")))))
+
+(deftest check-throw!-test
+  (testing "check-throw! throws on failed checks"
+    (is (thrown? Exception (check-throw! string? 34)))
+    (is (thrown-with-msg? Exception #"Type error" (check-throw! int? "dave")))))
