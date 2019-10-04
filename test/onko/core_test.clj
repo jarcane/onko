@@ -14,3 +14,9 @@
   (testing "check-throw! throws on failed checks"
     (is (thrown? Exception (check-throw! string? 34)))
     (is (thrown-with-msg? Exception #"Type error" (check-throw! int? "dave")))))
+
+(deftest map?-test
+  (testing "map? creates a check function that validates a map against the given model"
+    (let [foo? (map? {:foo int? :bar string?})]
+      (is (true? (check? foo? {:foo 34 :bar "dave"})))
+      (is (false? (check? foo? {:foo 34 :bar 42}))))))
